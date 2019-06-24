@@ -58,7 +58,9 @@ class SegmentedProgressBar : View {
   override fun onDraw(canvas: Canvas) {
     super.onDraw(canvas)
     drawContainerRectangles(canvas)
-    drawCompletedRectangles(canvas)
+    if (!properties.singleIndicatorMode) {
+      drawCompletedRectangles(canvas)
+    }
     drawCurrentRectangle(canvas)
   }
 
