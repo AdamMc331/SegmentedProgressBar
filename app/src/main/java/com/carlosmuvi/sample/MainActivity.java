@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     Button startWithoutAnimationButton;
     Button pauseResumeButton;
     Button resetButton;
+    Button singleIndicatorButton;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         pauseResumeButton = findViewById(R.id.button3);
         resetButton = findViewById(R.id.button2);
         startWithoutAnimationButton = findViewById(R.id.button4);
+        singleIndicatorButton = findViewById(R.id.button5);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
@@ -51,6 +53,22 @@ public class MainActivity extends AppCompatActivity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 segmentedProgressBar.reset();
+            }
+        });
+
+        singleIndicatorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isSingleIndicatorMode = segmentedProgressBar.isSingleIndicatorMode();
+                boolean nextMode = !isSingleIndicatorMode;
+
+                segmentedProgressBar.setSingleIndicatorMode(nextMode);
+
+                if (nextMode) {
+                    singleIndicatorButton.setText("Use Progress Indicator Mode");
+                } else {
+                    singleIndicatorButton.setText("Use Single Indicator Mode");
+                }
             }
         });
     }

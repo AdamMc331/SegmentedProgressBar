@@ -82,6 +82,14 @@ class SegmentedProgressBar : View {
     properties.segmentCount = segmentCount
   }
 
+  fun setSingleIndicatorMode(singleIndicatorMode: Boolean) {
+    properties.singleIndicatorMode = singleIndicatorMode
+  }
+
+  fun isSingleIndicatorMode(): Boolean {
+    return properties.singleIndicatorMode
+  }
+
   /*
     EXPOSED ACTION METHODS
      */
