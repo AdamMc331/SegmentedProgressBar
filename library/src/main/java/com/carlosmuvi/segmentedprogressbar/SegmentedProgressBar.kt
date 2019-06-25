@@ -60,6 +60,8 @@ class SegmentedProgressBar : View {
     drawContainerRectangles(canvas)
     if (!properties.singleIndicatorMode) {
       drawCompletedRectangles(canvas)
+    } else {
+      drawLastCompletedRectangle(canvas)
     }
     drawCurrentRectangle(canvas)
   }
@@ -145,6 +147,19 @@ class SegmentedProgressBar : View {
       leftX = leftX + segmentWidth + properties.segmentGapWidth
       rightX = leftX + segmentWidth
     }
+  }
+
+  private fun drawLastCompletedRectangle(canvas: Canvas) {
+    if (lastCompletedSegment <= 0) return
+
+    val segmentWidth = segmentWidth
+
+    val rightX = (lastCompletedSegment * (segmentWidth + properties.segmentGapWidth)) - properties.segmentGapWidth
+    val leftX = rightX - segmentWidth
+    val topY = 0
+    val botY = height
+
+    drawRoundedRect(canvas, leftX.toFloat(), topY.toFloat(), rightX.toFloat(), botY.toFloat(), fillRectanglePaint)
   }
 
   private fun drawCurrentRectangle(canvas: Canvas) {
